@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Special Gift | Products</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <a class="brand" href="index.html"><img src="logo.png" alt="Special Gift Logo"><span>Special Gift</span></a>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="products.html" class="active">Products</a></li>
+                <li><a href="cart.html">Cart</a></li>
+                <li><a href="faq.html">FAQs & Policy</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-hero reveal">
+            <p class="eyebrow">Customized Collection</p>
+            <h1>Choose your favorite gift</h1>
+            <p>Select an item, upload your design, and make it yours.</p>
+            <input type="search" id="product-search" placeholder="Search for mug, hoodie, tote bag..." aria-label="Search products">
+        </section>
+
+        <div class="product-grid reveal" id="product-grid">
+            <div class="product-card hover-photo" data-name="custom printed mug">
+                <img src="mug.jfif" alt="Custom Mug" class="zoomable-product">
+                <h3>Custom Printed Mug</h3>
+                <p class="price">45 SAR</p>
+                <button onclick="location.href='product-details.html?item=Mug&img=mug.jfif&price=45'">Customize Now</button>
+            </div>
+            <div class="product-card hover-photo" data-name="custom sticker pack">
+                <img src="sticker.jfif" alt="Custom Stickers" class="zoomable-product">
+                <h3>Custom Sticker Pack</h3>
+                <p class="price">20 SAR</p>
+                <button onclick="location.href='product-details.html?item=Sticker&img=sticker.jfif&price=20'">Customize Now</button>
+            </div>
+            <div class="product-card hover-photo" data-name="custom printed tote bag">
+                <img src="toteBag.jfif" alt="Custom Tote Bag" class="zoomable-product">
+                <h3>Custom Printed Tote Bag</h3>
+                <p class="price">35 SAR</p>
+                <button onclick="location.href='product-details.html?item=Tote Bag&img=toteBag.jfif&price=35'">Customize Now</button>
+            </div>
+            <div class="product-card hover-photo" data-name="custom engraved keychain">
+                <img src="keychain.jfif" alt="Custom Keychain" class="zoomable-product">
+                <h3>Custom Engraved Keychain</h3>
+                <p class="price">25 SAR</p>
+                <button onclick="location.href='product-details.html?item=Keychain&img=keychain.jfif&price=25'">Customize Now</button>
+            </div>
+            <div class="product-card hover-photo" data-name="custom printed t-shirt tshirt">
+                <img src="tshirt.jfif" alt="Custom T-Shirt" class="zoomable-product">
+                <h3>Custom Printed T-Shirt</h3>
+                <p class="price">75 SAR</p>
+                <button onclick="location.href='product-details.html?item=T-Shirt&img=tshirt.jfif&price=75'">Customize Now</button>
+            </div>
+            <div class="product-card hover-photo" data-name="custom printed hoodie">
+                <img src="hodie.jfif" alt="Custom Hoodie" class="zoomable-product">
+                <h3>Custom Printed Hoodie</h3>
+                <p class="price">120 SAR</p>
+                <button onclick="location.href='product-details.html?item=Hoodie&img=hodie.jfif&price=120'">Customize Now</button>
+            </div>
+            <div class="product-card hover-photo" data-name="custom mixed gift box">
+                <img src="box.jfif" alt="Custom Gift Box" class="zoomable-product">
+                <h3>Custom Mixed Gift Box</h3>
+                <p class="price">180 SAR</p>
+                <button onclick="location.href='product-details.html?item=Gift Box&img=box.jfif&price=180'">Customize Now</button>
+            </div>
+            <div class="product-card hover-photo" data-name="custom scented candle candle">
+                <img src="candle.png" alt="Custom Scented Candle" class="zoomable-product">
+                <h3>Custom Scented Candle</h3>
+                <p class="price">55 SAR</p>
+                <button onclick="location.href='product-details.html?item=Scented Candle&img=candle.png&price=55'">Customize Now</button>
+            </div>
+        </div>
+        <p id="no-products" class="empty-message">No products found.</p>
+    </main>
+
+        <div id="product-modal" class="product-modal" aria-hidden="true">
+            <button id="modal-close" class="modal-close" aria-label="Close product preview">&times;</button>
+            <div class="modal-content">
+                <img id="modal-img" src="" alt="Enlarged product image">
+                <h3 id="modal-title"></h3>
+            </div>
+        </div>
+
+    <footer><p>&copy; 2026 Special Gift. Custom Design Co.</p></footer>
+    <script src="script.js"></script>
+</body>
+</html>

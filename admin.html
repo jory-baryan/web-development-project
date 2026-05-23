@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Special Gift | Admin Panel</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <a class="brand" href="index.html"><img src="logo.png" alt="Special Gift Logo"><span>Special Gift</span></a>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="cart.html">Cart</a></li>
+                <li><a href="faq.html">FAQs & Policy</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+                <li><a href="admin.html" class="active">Admin</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-hero reveal">
+            <p class="eyebrow">Admin Panel</p>
+            <h1>Manage Products</h1>
+            <p>Add new products to the catalog or remove existing ones.</p>
+        </section>
+
+        <section class="reveal" style="max-width:520px;margin:0 auto 40px;">
+            <form id="add-product-form" class="pretty-form glass-card">
+                <h3 style="margin-top:0;">Add New Product</h3>
+
+                <label for="p-name">Product Name</label>
+                <input type="text" id="p-name" placeholder="e.g. Custom Photo Frame" required>
+
+                <label for="p-price">Price (SAR)</label>
+                <input type="number" id="p-price" placeholder="e.g. 60" min="1" required>
+
+                <label for="p-image">Product Image</label>
+                <select id="p-image" required>
+                    <option value="mug.jfif">Mug</option>
+                    <option value="sticker.jfif">Sticker</option>
+                    <option value="toteBag.jfif">Tote Bag</option>
+                    <option value="keychain.jfif">Keychain</option>
+                    <option value="tshirt.jfif">T-Shirt</option>
+                    <option value="hodie.jfif">Hoodie</option>
+                    <option value="box.jfif">Gift Box</option>
+                    <option value="candle.png">Scented Candle</option>
+                </select>
+
+                <button type="submit" class="primary-btn full-btn">Add Product</button>
+                <p id="admin-message" class="form-message"></p>
+            </form>
+            <p style="text-align:center;margin-top:14px;">
+                <button id="reset-btn" class="secondary-btn">Reset to Default Catalog</button>
+            </p>
+        </section>
+
+        <section class="reveal">
+            <h2 style="text-align:center;">Current Products</h2>
+            <div id="admin-product-list" class="product-grid"></div>
+        </section>
+    </main>
+
+    <footer><p>&copy; 2026 Special Gift. Custom Design Co.</p></footer>
+
+    <script>
+        const DEFAULT_PRODUCTS = [
+            { name: 'Custom Printed Mug', price: 45, image: 'mug.jfif' },
+            { name: 'Custom Sticker Pack', price: 20, image: 'sticker.jfif' },
+            { name: 'Custom Printed Tote Bag', price: 35, image: 'toteBag.jfif' },
+            { name: 'Custom Engraved Keychain', price: 25, image: 'keychain.jfif' },
+            { name: 'Custom Printed T-Shirt', price: 75, image: 'tshirt.jfif' },
+            { name: 'Custom Printed Hoodie', price: 120, image: 'hodie.jfif' },
+            { name: 'Custom Mixed Gift Box', price: 180, image: 'box.jfif' },
+            { name: 'Custom Scented Candle', price: 55, image: 'candle.png' }
+        ];
+
+        function getAdminProducts() {
+            return JSON.parse(localStorage.getItem('specialGiftProducts')) || [];
+        }
+        function getHiddenProducts() {
+            return JSON.parse(localStorage.getItem('specialGiftHiddenProducts')) || [];
+        }
+
+        function makeRow(product, type, index) {
+            const card = document.createElement('div');
+            card.className = 'product-card';
+            card.innerHTML =
+                '<img src="' + product.image + '" alt="' + product.name + '">' +
+                '<h3>' + product.name + '</h3>' +
+                '<p class="price">' + product.price + ' SAR</p>';
+            const btn = document.createElement('button');
+            btn.className = 'remove-btn';
+            btn.textContent = 'Remove';
+            btn.addEventListener('click', function () {
+                if (type === 'default') {
+                    const hidden = getHiddenProducts();
+                    hidden.push(product.name);
+                    localStorage.setItem('specialGiftHiddenProducts', JSON.stringify(hidden));
+                } else {
+                    const added = getAdminProducts();
+                    added.splice(index, 1);
+                    localStorage.setItem('specialGiftProducts', JSON.stringify(added));
+                }
+                document.getElementById('admin-message').textContent =
+                    '"' + product.name + '" was removed from the catalog.';
+                renderAdminList();
+            });
+            card.appendChild(btn);
+            return card;
+        }
+
+        function renderAdminList() {
+            const list = document.getElementById('admin-product-list');
+            list.innerHTML = '';
+            const hidden = getHiddenProducts();
+            DEFAULT_PRODUCTS.forEach(function (product) {
+                if (hidden.indexOf(product.name) === -1) {
+                    list.appendChild(makeRow(product, 'default'));
+                }
+            });
+            getAdminProducts().forEach(function (product, index) {
+                list.appendChild(makeRow(product, 'added', index));
+            });
+        }
+
+        document.getElementById('add-product-form').addEventListener('submit', function (event) {
+            event.preventDefault();
+            const name = document.getElementById('p-name').value.trim();
+            const price = Number(document.getElementById('p-price').value);
+            const image = document.getElementById('p-image').value;
+            const message = document.getElementById('admin-message');
+            if (name.length < 2 || !price || price <= 0) {
+                message.textContent = 'Please enter a valid product name and a price greater than 0.';
+                return;
+            }
+            const added = getAdminProducts();
+            added.push({ name: name, price: price, image: image });
+            localStorage.setItem('specialGiftProducts', JSON.stringify(added));
+            message.textContent = '"' + name + '" was added to the catalog.';
+            event.target.reset();
+            renderAdminList();
+        });
+
+        document.getElementById('reset-btn').addEventListener('click', function () {
+            localStorage.removeItem('specialGiftProducts');
+            localStorage.removeItem('specialGiftHiddenProducts');
+            document.getElementById('admin-message').textContent = 'Catalog reset to default products.';
+            renderAdminList();
+        });
+
+        renderAdminList();
+    </script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Special Gift | Contact Us</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <a class="brand" href="index.html"><img src="logo.png" alt="Special Gift Logo"><span>Special Gift</span></a>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="cart.html">Cart</a></li>
+                <li><a href="faq.html">FAQs & Policy</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="contact.html" class="active">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="form-page reveal">
+        <form id="contact-form" class="pretty-form glass-card">
+            <p class="eyebrow">Get in Touch</p>
+            <h1>Contact Us</h1>
+            <p>Have a special request? Send us a message.</p>
+            <label for="name">Full Name</label>
+            <input type="text" id="name" placeholder="Enter your name" required>
+            <label for="email">Email Address</label>
+            <input type="email" id="email" placeholder="Enter your email" required>
+            <label for="message">Your Message</label>
+            <textarea id="message" rows="5" placeholder="How can we help you?" required></textarea>
+            <button type="submit" class="primary-btn full-btn">Send Message</button>
+            <p id="contact-message" class="status-message"></p>
+        </form>
+    </main>
+
+    <footer><p>&copy; 2026 Special Gift. Custom Design Co.</p></footer>
+    <script src="script.js"></script>
+</body>
+</html>

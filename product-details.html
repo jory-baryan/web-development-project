@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Special Gift | Customize</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <a class="brand" href="index.html"><img src="logo.png" alt="Special Gift Logo"><span>Special Gift</span></a>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="cart.html">Cart</a></li>
+                <li><a href="faq.html">FAQs & Policy</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="product-details-container reveal">
+        <div class="product-info-section glass-card">
+            <div class="product-image hover-photo">
+                <img src="box.jfif" alt="Customizable Product" id="main-product-img">
+                <p class="image-hint">Move your mouse over the image</p>
+            </div>
+            <div class="product-customization">
+                <p class="eyebrow">Design your gift</p>
+                <h1 id="product-title">Customize Your Item</h1>
+                <p class="product-description">Upload your own design or special photo, and we will professionally print it on your selected item.</p>
+                <form id="customization-form">
+                    <label for="color">Pick a Color:</label>
+                    <select id="color" name="color">
+                        <option value="White">White</option>
+                        <option value="Black">Black</option>
+                        <option value="Soft Pink">Soft Pink</option>
+                        <option value="Beige">Beige</option>
+                    </select>
+
+                    <label for="design-upload">Upload Your Design:</label>
+                    <input type="file" id="design-upload" name="design-upload" accept="image/*" required>
+
+                    <label for="notes">Special Instructions:</label>
+                    <textarea id="notes" rows="4" placeholder="Example: place the design in the center."></textarea>
+
+                    <div class="price-display">
+                        <span>Price:</span>
+                        <strong class="price-tag" id="display-price">20 SAR</strong>
+                    </div>
+                    <button type="submit" class="primary-btn full-btn">Add to Cart</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer><p>&copy; 2026 Special Gift. Custom Design Co.</p></footer>
+    <script src="script.js"></script>
+</body>
+</html>
